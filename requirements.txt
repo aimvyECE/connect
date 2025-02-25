@@ -1,0 +1,10 @@
+pydantic
+requests
+playwright
+python-dotenv
+langchain
+langchain-core
+langchain-experimental
+sentence-transformers
+supabase
+asyncio
