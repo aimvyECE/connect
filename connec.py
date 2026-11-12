@@ -1,5 +1,6 @@
 
 import logging
+import os
 import numpy as np
 from typing import List, Dict
 from fastapi import FastAPI, HTTPException
@@ -13,12 +14,12 @@ logger = logging.getLogger("SupabaseAPI")
 
 # Charger les variables d'environnement
 
-SUPABASE_URL ="https://akjbcpxwjjzzhibgotnx.supabase.co"
-SUPABASE_KEY ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFramJjcHh3amp6emhpYmdvdG54Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MDMzODIzNiwiZXhwIjoyMDU1OTE0MjM2fQ.Yyg7VCdtyzvnjHK8DjbJ37LSS1PPvASXpoHHrT1eUNM"
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 
 # Vérification des credentials
 if not SUPABASE_URL or not SUPABASE_KEY:
-    raise ValueError("Les credentials Supabase ne sont pas définis. Vérifie ton fichier .env.")
+    raise ValueError("Les variables d'environnement SUPABASE_URL et SUPABASE_KEY doivent être définies.")
 
 # Connexion à Supabase
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
